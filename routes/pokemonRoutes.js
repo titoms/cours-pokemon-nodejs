@@ -8,19 +8,12 @@ router.get('/', pokemonController.getAllPokemons)
 // Get ONE pokemon
 // localhost:3000/api/pokemons/9230774h2203HDkdj
 router.get('/:id', pokemonController.getOnePokemon)
-
 // Create a Pokemon
 // POST sur localhost:3000/api/pokemons
-router.post('/', (req, res) => {
-    res.send('Post Pokemon');
-})
+router.post('/', pokemonController.createPokemon)
 // Edit a Pokemon
-router.put('/:id', (req, res) => {
-    res.send('Edit a Pokemon');
-})
+router.put('/:id', pokemonController.editPokemon)
 // Delete a Pokemon
-router.delete('/:id', (req, res) => {
-    res.send('Delete a Pokemon');
-})
+router.delete('/:id', pokemonController.deletePokemon)
 
 module.exports = router

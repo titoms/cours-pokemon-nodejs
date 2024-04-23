@@ -5,12 +5,13 @@ const pokemonSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
+      unique: true,
     },
     hp: Number,
     cp: Number,
     picture: String,
     types: {
-      type: String,
+      type: [String],
       enum: ["Feu", "Eau", "Plante", "Acier", "Combat"],
     },
   },

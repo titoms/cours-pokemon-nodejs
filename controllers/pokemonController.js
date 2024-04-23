@@ -19,8 +19,24 @@ exports.getOnePokemon = async (req, res) => {
   }
 };
 
-exports.createPokemon = async (req, res) => {};
+exports.createPokemon = async (req, res) => {
+  try {
+    const newPokemon = new Pokemon({
+      name: req.body.name,
+      hp: req.body.hp,
+      cp: req.body.cp,
+      picture: req.body.picture,
+      types: req.body.types,
+    });
+    const savedPokemon = await newPokemon.save();
+    res.status(201).json(savedPokemon);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
 
 exports.editPokemon = async (req, res) => {};
 
-exports.deletePokemon = async (req, res) => {};
+exports.deletePokemon = async (req, res) => {
+  
+};

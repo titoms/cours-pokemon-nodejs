@@ -2,12 +2,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./routes');
+const cors = require('cors');
 require('dotenv').config();
 
 // Initialisation de l'appli express, on définis le numéor de prot
 let app = express();
 let port = 3000;
 // Message de bienvenue sur localhost:3000
+app.use(cors());
 app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Welcome to my backend');

@@ -35,8 +35,25 @@ exports.createPokemon = async (req, res) => {
   }
 };
 
-exports.editPokemon = async (req, res) => {};
+exports.editPokemon = async (req, res) => {
+  try {
+    const updatedPokemon = await Pokemon.findByIdAndUpdate(
+      req.params.id, 
+      req.body, 
+      {new: true});
+      if (!updatedPokemon) return res.status(404).json("Pokemon not found.");
+      res.status(200).json(updatedPokemon);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 exports.deletePokemon = async (req, res) => {
-  
+  try {
+    const deletedPokemon = await Pokemon.findByIdAndDelete(req.params.id);
+    if (!deletedPokemon) return res.status(404).json("Pokemon not found.");
+    res.status(200).json('Pokemon deleted successfully');
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };

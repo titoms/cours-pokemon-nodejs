@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+// faites un 'npm i jsonwebtoken' d'abord
 const jwt = require('jsonwebtoken');
 const User = require("../models/userModel");
 
@@ -69,7 +70,7 @@ exports.login = async (req, res) => {
     if (!user) return res.status(404).json('Invalid identifiers');
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     if (!validPassword) return res.status(404).json('Invalid identifiers');
-    const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET);
+    const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, { expiresIn: '1h'});
     res.header('auth-token', token).send(token);
   } catch (error) {
     res.status(500).json({ message: error.message });

@@ -71,7 +71,7 @@ exports.login = async (req, res) => {
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     if (!validPassword) return res.status(404).json('Invalid identifiers');
     const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, { expiresIn: '1h'});
-    res.header('auth-token', token).send(token);
+    res.header('auth-token', token).json(token);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

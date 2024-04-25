@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const verifyToken = require('../middlewares/verifyToken');
 const userController = require('../controllers/userController');
 
 // Get all users
 // GET sur localhost:3000/api/users
-router.get('/', verifyToken, userController.getAllUsers)
+router.get('/', userController.getAllUsers)
 // Get ONE user
 // localhost:3000/api/users/9230774h2203HDkdj
 router.get('/:id', userController.getOneUser)
